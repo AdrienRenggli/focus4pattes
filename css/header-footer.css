@@ -4,7 +4,7 @@
   --bg-beige: #B8A99A;      /* The main header/footer background */
   --text-dark: #3D3630;     /* Deep brown/charcoal for text */
   --overlay-dark: rgba(0, 0, 0, 0.4);
-  --white: #F2EDE7;
+  --white: #ECE4D9;
   
   /* Spacing & Transitions */
   --header-height: 80px;
@@ -118,7 +118,7 @@ main {
 
 /* ----- For thinner screens ----- */
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
     /* --- Header & Nav --- */
     .hamburger {
         display: block; /* Show hamburger */
