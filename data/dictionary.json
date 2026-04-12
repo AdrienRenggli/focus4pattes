@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "nav-about": "À propos",
+    "nav-gallery": "Galerie photos",
+    "nav-rates": "Tarifs",
+    "footer-info": "Informations",
+    "footer-other": "Autres",
+    "footer-legals": "Mentions légales",
+    "footer-made": "Créé par",
+    "footer-rights": "Tous droits réservés."
+  },
+  "en": {
+    "nav-about": "About",
+    "nav-gallery": "Photo Gallery",
+    "nav-rates": "Rates",
+    "footer-info": "Information",
+    "footer-other": "Others",
+    "footer-legals": "Legal notices",
+    "footer-made": "Made by",
+    "footer-rights": "All rights reserved."
+  }
+}
