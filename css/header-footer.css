@@ -16,25 +16,6 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none; /* TODO for mobile */
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .main-footer {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .footer-section:last-child {
-        text-align: center;
-    }
-}
-
 /* ----- Header ----- */
 
 .header {
@@ -54,8 +35,6 @@
 .logo img {
     height: 70px;
     width: auto;
-    margin: 0;
-    padding: 0;
 }
 
 .desktop-nav {
@@ -136,4 +115,61 @@ main {
 .footer-section a {
     color: var(--text-dark);
     text-decoration: underline;
+}
+
+/* ----- For thinner screens ----- */
+
+@media (max-width: 768px) {
+    /* --- Header & Nav --- */
+    .hamburger {
+        display: block; /* Show hamburger */
+        z-index: 1001;
+    }
+
+    .desktop-nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 80%;
+        height: 100vh;
+        
+        /* --- Transparency Logic --- */
+        background-color: rgba(184, 169, 154, 0.8); 
+        
+        backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px); /* Safari support */
+        
+        transition: var(--transition-smooth);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .desktop-nav.active {
+        right: 0;
+    }
+
+    /* --- Footer (Vertical Stack) --- */
+    .main-footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    /* Reordering the footer: Logo first, then Info, then Autres */
+    .footer-logo {
+        grid-row: 1; 
+    }
+    .footer-section:first-child {
+        grid-row: 2;
+    }
+    .footer-section:last-child {
+        grid-row: 3;
+        text-align: center;
+    }
 }
