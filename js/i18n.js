@@ -24,5 +24,3 @@ async function initLanguage() {
 
     updateText(currentLang);
 }
-
-document.addEventListener('DOMContentLoaded', initLanguage);
