@@ -2,12 +2,12 @@
   * They are never fully shown on the code.
   */
 function initReveal() {
-    var tel = ["41", "79", "512", "12", "96"];
+    var tel = ["41", "79", "525", "12", "96"];
     document.getElementById("phone").innerHTML = "+" + tel.join(" ");
     document.getElementById("phoneLink").setAttribute("href", "tel:+" + tel.join(""));
 
-    var user = ["love", "photos774"];
-    var domain = ["gmail", "com"];
+    var user = ["contact"];
+    var domain = ["focus4pattes", "com"];
     var email = user.join(".") + "@" + domain.join(".");
     document.getElementById("email").innerHTML = email;
     document.getElementById("emailLink").setAttribute("href", "mailto:" + email);
