@@ -123,6 +123,12 @@ main {
     .hamburger {
         display: block; /* Show hamburger */
         z-index: 1001;
+
+        /* iOS styling */
+        color: var(--text-dark); /* Force custom dark brown */
+        -webkit-appearance: none; /* Strip Apple's default button styling */
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .desktop-nav {
