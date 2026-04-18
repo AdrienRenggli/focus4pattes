@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Galerie - Focus4pattes</title>
+        <link rel="shortcut icon" href="img/layout/favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="css/header-footer.css" />
+        <link rel="stylesheet" href="css/gallery.css" /> </head>
+
+    <body>
+        <header id="main-header" class="header"></header>
+
+        <main>
+            <div class="gallery-container">
+                <h1 data-i18n="nav-gallery" class="page-title">Galerie photos</h1>
+                
+                <div id="gallery-grid" class="gallery-grid">
+                    </div>
+            </div>
+
+            <div id="photo-modal" class="modal hidden">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content">
+                    <button id="modal-close" class="modal-close">X</button>
+                    
+                    <div class="modal-image-container">
+                        <img id="modal-image" src="" alt="Selected photo">
+                    </div>
+                    
+                    <div class="modal-info">
+                        <h2 id="modal-title">Titre de la photo</h2>
+                        <p id="modal-desc" class="modal-description">Description de la photo...</p>
+                        
+                        <div class="modal-metadata">
+                            <span id="modal-meta-focal"></span>
+                            <span id="modal-meta-aperture"></span>
+                            <span id="modal-meta-shutter"></span>
+                            <span id="modal-meta-iso"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer id="main-footer" class="main-footer"></footer>
+
+        <script src="js/i18n.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/load-components.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
+
+        <script type="module" src="js/gallery.js"></script> </body>
+</html>
