@@ -20,6 +20,9 @@ async function initLanguage() {
         currentLang = currentLang === 'fr' ? 'en' : 'fr';
         localStorage.setItem('lang', currentLang);
         updateText(currentLang);
+
+        // Tell the rest of the app the language changed
+        window.dispatchEvent(new Event('languageChanged'));
     });
 
     updateText(currentLang);
