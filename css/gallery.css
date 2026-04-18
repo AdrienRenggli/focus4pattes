@@ -1,0 +1,171 @@
+/* ----- Gallery General ----- */
+.gallery-container {
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+/* ----- Masonry Grid ----- */
+.gallery-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+.gallery-item {
+    break-inside: avoid; /* Prevents images from splitting across columns */
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: var(--bg-beige); /* Placeholder color while loading */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+/* ----- Modal Overlay ----- */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* ----- Modal Content Box ----- */
+.modal-content {
+    position: relative;
+    background-color: var(--white);
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    display: flex;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 2001;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.modal-image-container {
+    flex: 6; /* Takes up roughly 60% of the width */
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.modal-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the whole image is visible without cropping */
+}
+
+.modal-info {
+    flex: 4; /* Takes up roughly 40% of the width */
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.modal-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.modal-description {
+    line-height: 1.6;
+    margin-bottom: auto; /* Pushes metadata to the bottom */
+}
+
+.modal-metadata {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+/* ----- Responsive Adjustments ----- */
+@media (max-width: 1024px) {
+    .gallery-grid { column-count: 2; }
+}
+
+@media (max-width: 780px) {
+    .gallery-grid { column-count: 1; }
+    
+    .modal { padding: 1rem; }
+    
+    .modal-content {
+        flex-direction: column;
+        max-height: 95vh;
+    }
+    
+    .modal-image-container {
+        flex: none;
+        height: 50vh; /* Fixed height on mobile so text is accessible */
+    }
+    
+    .modal-info {
+        padding: 2rem 1.5rem;
+    }
+    
+    .modal-close {
+        /* Add a background to the close button on mobile so it's visible over the image */
+        background: rgba(255,255,255,0.7);
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
