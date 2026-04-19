@@ -1,0 +1,120 @@
+/* ----- About Page Specific Styles ----- */
+.about-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 5%;
+    color: var(--text-dark);
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.about-subtitle {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-left: 3rem; /* Subtitle indentation */
+    margin-bottom: 3rem;
+}
+
+.about-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    margin-left: 6rem; /* Main text block indentation */
+}
+
+.about-paragraph.bold {
+    font-weight: bold;
+}
+
+.about-list {
+    margin-left: 8rem; /* Further indentation for list items */
+    margin-bottom: 1.5rem;
+}
+
+.about-list p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.about-list span {
+    font-weight: bold;
+}
+
+/* ----- Contact & Gear Elements ----- */
+#about-link {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+#about-link a {
+    color: #8b5a2b; /* Earthy brown/orange - adjust to your palette */
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#about-link a:hover {
+    color: #5c3a18;
+    border-bottom: 2px solid #5c3a18;
+}
+
+#about-material {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #fcfbf9;
+    border-radius: 8px;
+    border: 1px solid #eaeaea;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ----- Responsive Adjustments ----- */
+@media (max-width: 780px) {
+    .about-container {
+        margin: 2rem auto;
+    }
+
+    .about-title {
+        font-size: 1.8rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.5rem;
+        margin-left: 0; /* Remove extreme indentation on mobile */
+        margin-bottom: 2rem;
+    }
+
+    .about-paragraph {
+        font-size: 1rem;
+        margin-left: 1rem;
+    }
+
+    .about-list {
+        margin-left: 2rem;
+    }
+
+    #about-link {
+        font-size: 1.1rem;
+        margin-top: 2rem;
+    }
+    
+    #about-material {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
