@@ -1,0 +1,71 @@
+/* ----- Legals Page Specific Styles ----- */
+
+.legals-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 5%;
+    color: var(--text-dark);
+}
+
+.legals-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+/* 1st Level Indentation */
+.legals-section-title {
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-left: 3rem; 
+    margin-bottom: 0.5rem;
+}
+
+/* 2nd Level Indentation */
+.legals-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    margin-left: 6rem; 
+}
+
+/* PDF Link styling */
+.legals-link {
+    display: block;
+    font-size: 1.1rem;
+    margin-left: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.legals-link:hover {
+    text-decoration: underline;
+}
+
+/* ----- Responsive Adjustments ----- */
+@media (max-width: 780px) {
+    .legals-container {
+        margin: 2rem auto;
+    }
+
+    .legals-title {
+        font-size: 1.8rem;
+    }
+
+    .legals-section-title {
+        margin-left: 1rem;
+    }
+
+    .legals-paragraph {
+        font-size: 1rem;
+        margin-left: 2rem;
+    }
+    
+    .legals-link {
+        margin-left: 1rem;
+        font-size: 1rem;
+    }
+}
