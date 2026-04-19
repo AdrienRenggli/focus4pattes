@@ -26,7 +26,4 @@ function initReveal() {
     document.querySelectorAll('.reveal-email-link').forEach(el => {
         el.setAttribute("href", emailHref);
     });
-
-    document.getElementById("email").innerHTML = emailText
-    document.getElementById("phone").innerHTML = phoneText
 }
