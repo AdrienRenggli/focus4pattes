@@ -1,4 +1,4 @@
-import { galleryContent } from './galleryContent.js';
+import { galleryContent } from '../res/gallery/galleryContent.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('gallery-grid');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the full bilingual object directly on the element for later access
         item._bilingualData = data;
 
-        const src = `img/gallery/${data.path}`;
+        const src = `res/gallery/${data.path}`;
         const img = document.createElement('img');
         img.src = src;
         img.loading = 'lazy';
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lang = getLang();
         const imgElement = item.querySelector('img');
 
-        modalImg.src = `img/gallery/${data.path}`;
+        modalImg.src = `res/gallery/${data.path}`;
         modalTitle.innerText = data.title;
         modalDesc.innerText = data.description[lang] || "";
         
