@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const lang = getLang();
         container.innerHTML = ''; 
 
+        // Initialize a counter for your section titles
+        let sectionCounter = 1;
+
         legalsContent.forEach(block => {
             let el;
             
@@ -17,10 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.className = 'legals-title';
                 el.innerText = block.content[lang];
             } 
+            else if (block.type === 'subtitle') {
+                if (block.content[lang]) {
+                    el = document.createElement('h3');
+                    el.className = 'legals-subtitle';
+                    el.innerText = block.content[lang];
+                }
+            }
+            else if (block.type === 'date') {
+                el = document.createElement('p');
+                el.className = 'legals-date';
+                el.innerText = block.content[lang];
+            }
             else if (block.type === 'section_title') {
                 el = document.createElement('h2');
                 el.className = 'legals-section-title';
-                el.innerText = block.content[lang];
+                
+                el.innerText = `${sectionCounter}. ${block.content[lang]}`;
+                el.style.fontWeight = 'bold';
+                
+                sectionCounter++; 
             }
             else if (block.type === 'paragraph') {
                 el = document.createElement('p');
