@@ -89,7 +89,15 @@ export const aboutContent = [
         }
     },
     {
-        type: "cta_link",
+        type: "cta_pdf",
+        linkText: {
+            fr: "Télécharger le bon de réservation.",
+            en: "Download the booking form. (French)"
+        },
+        href: "res/docs/Bon_Reservation_Focus4Pattes.pdf" 
+    },
+    {
+        type: "cta_mail",
         text: {
             fr: "Envie d'immortaliser votre compagnon ? ",
             en: "Want to immortalize your pet? "

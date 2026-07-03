@@ -45,7 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.appendChild(p);
                 });
             }
-            else if (block.type === 'cta_link') {
+            else if (block.type === 'cta_pdf') {
+                el = document.createElement('div');
+                el.id = 'about-link';
+                el.className = 'about-pdf-container'; 
+                
+                const a = document.createElement('a');
+                a.href = block.href;
+                a.innerText = block.linkText[lang];
+                
+                a.target = '_blank'; 
+                a.rel = 'noopener noreferrer';
+                
+                el.appendChild(a);
+            }
+            else if (block.type === 'cta_mail') {
                 el = document.createElement('div');
                 el.id = 'about-link';
                 
@@ -83,9 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render
     renderContent();
-
     initReveal();
 
     // Re-render when the language changes
-    window.addEventListener('languageChanged', renderContent);
+    window.addEventListener('languageChanged', () => {
+        renderContent();
+        initReveal();
+    });
 });
