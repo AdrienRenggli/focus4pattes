@@ -6,7 +6,7 @@ function initReveal() {
 
     // 2. Prepare Email strings
     const user = ["contact"];
-    const domain = ["focus4pattes", "com"]; // Note: change to "ch" if your domain is .ch
+    const domain = ["focus4pattes", "ch"];
     const emailText = user.join(".") + "@" + domain.join(".");
     const emailHref = "mailto:" + emailText;
 
