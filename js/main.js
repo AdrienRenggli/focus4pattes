@@ -37,4 +37,34 @@ function initMenu() {
       }
       lastScrollY = currentScrollY;
     });
+
+    function topFunction() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+        const backToTopBtn = document.getElementById("backToTopBtn");
+
+        if (backToTopBtn) {
+            // Scroll to top smoothly when clicked
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            // Only show the button when the user scrolls down
+            window.addEventListener("scroll", () => {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            });
+        }
+    });
