@@ -1,12 +1,26 @@
-<div class="logo">
-    <a href="index.html"><img src="res/layout/focus4pattes.svg" alt="Focus 4 pattes logo"></a>
-</div>
-<nav class="desktop-nav">
-    <a href="about.html" data-i18n="nav-about">À propos</a>
-    <a href="gallery.html" data-i18n="nav-gallery">Galerie photos</a>
-    <a href="#rates" data-i18n="nav-rates">Tarifs</a>
-    <button id="lang-switch">🇬🇧</button>
+<div class="header-container">
+    <!-- 1. LOGO -->
+    <a href="index.html" class="logo-link">
+        <img src="res/layout/focus4pattes.svg" alt="Focus4pattes Logo" class="logo-img">
+    </a>
+    
+    <!-- 2. NEW TITLES -->
+    <div class="header-titles">
+        <h1 data-i18n="header-title" class="main-title">CAPTURER L'ÉMOTION</h1>
+        <p data-i18n="header-subtitle" class="subtitle">Portraits d'animaux, seuls ou avec ceux qui les aiment.</p>
+    </div>
 
-    <a href="https://www.instagram.com/focus4pattes/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-</nav>
-<button class="hamburger">☰</button>
+    <!-- 3. NAVIGATION -->
+    <nav class="main-nav">
+        <a href="about.html" data-i18n="nav-about">À propos</a>
+        <a href="gallery.html" data-i18n="nav-gallery">Galerie photos</a>
+        <a href="#rates" data-i18n="nav-rates">Tarifs</a>
+        <button id="lang-switch">🇬🇧</button>
+        <a href="https://www.instagram.com/focus4pattes/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </nav>
+
+    <!-- 4. HAMBURGER MENU -->
+    <button class="hamburger" id="hamburger-menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
