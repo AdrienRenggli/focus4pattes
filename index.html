@@ -1,22 +1,74 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="fr">
+<head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <title>Focus4pattes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Focus 4pattes | Capturer l'émotion</title>
         <link rel="shortcut icon" href="res/layout/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="css/header-footer.css" />
+        
+        <link rel="stylesheet" href="css/header-footer.css">
+        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/components/topButton.css">
     </head>
-
     <body>
+
         <header id="main-header" class="header"></header>
 
-        <main>
-            <h1> Random text to separate things</h1>
+        <main class="home-main">
+
+            <div class="titles">
+                <h1 data-i18n="title" class="main-title">CAPTURER L'ÉMOTION</h1>
+                <p data-i18n="subtitle" class="subtitle">Portraits d'animaux, seuls ou avec ceux qui les aiment.</p>
+            </div>
+                    
+            <section class="hero-gallery">
+                <a href="gallery.html?category=dogs" class="hero-link">
+                    <img src="res/home/hero-dog.jpeg" alt="Portrait de chien" class="hero-img">
+                </a>
+                <a href="gallery.html?category=farm" class="hero-link">
+                    <img src="res/home/hero-farm.jpeg" alt="Animaux de ferme" class="hero-img">
+                </a>
+                <a href="gallery.html?category=cats" class="hero-link">
+                    <img src="res/home/hero-cat.jpeg" alt="Portrait de chat" class="hero-img">
+                </a>
+            </section>
+
+            <section class="features">
+                <div class="feature-item">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-camera fa-2x"></i>
+                    </div>
+                    <p data-i18n="home_feat1">Chaque regard raconte une personnalité.<br>Chaque regard raconte une histoire.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-heart fa-2x"></i>
+                    </div>
+                    <p data-i18n="home_feat2">Chaque lien raconte une personnalité.<br>Chaque lien raconte une histoire.</p>
+                </div>
+            </section>
+
+            <section class="category-grid">
+                <a href="gallery.html?category=dogs" class="cat-item">
+                    <img src="res/home/dog.svg" alt="Chiens">
+                    <span data-i18n="cat_dogs">CHIENS</span>
+                </a>
+                <a href="gallery.html?category=cats" class="cat-item">
+                    <img src="res/home/cat.svg" alt="Chats">
+                    <span data-i18n="cat_cats">CHATS</span>
+                </a>
+                <a href="gallery.html?category=horses" class="cat-item">
+                    <img src="res/home/horse.svg" alt="Chevaux">
+                    <span data-i18n="cat_horses">CHEVAUX</span>
+                </a>
+                <a href="gallery.html?category=farm" class="cat-item">
+                    <img src="res/home/farm.svg" alt="Animaux de ferme">
+                    <span data-i18n="cat_farm">ANIMAUX DE FERME</span>
+                </a>
+            </section>
+
         </main>
 
         <button id="backToTopBtn" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
@@ -25,8 +77,7 @@
 
         <script src="js/i18n.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/reveal.js"></script>
-        
         <script src="js/load-components.js"></script>
+        <script src="js/reveal.js"></script>
     </body>
 </html>

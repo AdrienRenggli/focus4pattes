@@ -3,24 +3,36 @@
     "nav-about": "À propos",
     "nav-gallery": "Galerie photos",
     "nav-rates": "Tarifs",
-    "header-title": "CAPTURER L'ÉMOTION",
-    "header-subtitle": "Portraits d'animaux, seuls ou avec ceux qui les aiment.",
     "footer-info": "Informations",
     "footer-other": "Autres",
     "footer-legals": "Mentions légales",
     "footer-made": "Créé par",
-    "footer-rights": "Tous droits réservés."
+    "footer-rights": "Tous droits réservés.",
+    "title": "CAPTURER L'ÉMOTION",
+    "subtitle": "Portraits d'animaux, seuls ou avec ceux qui les aiment.",
+    "cat_dogs": "CHIENS",
+    "cat_cats": "CHATS",
+    "cat_horses": "CHEVAUX",
+    "cat_farm": "ANIMAUX DE FERME",
+    "home_feat1": "Chaque regard raconte une personnalité.\nChaque regard raconte une histoire.",
+    "home_feat2": "Chaque lien raconte une personnalité.\nChaque lien raconte une histoire."
   },
   "en": {
     "nav-about": "About",
     "nav-gallery": "Photo Gallery",
     "nav-rates": "Rates",
-    "header-title": "CAPTURE THE EMOTION",
-    "header-subtitle": "Animal portraits, alone or with those who love them.",
     "footer-info": "Information",
     "footer-other": "Others",
     "footer-legals": "Legal notices",
     "footer-made": "Made by",
-    "footer-rights": "All rights reserved."
+    "footer-rights": "All rights reserved.",
+    "title": "CAPTURE THE EMOTION",
+    "subtitle": "Animal portraits, alone or with those who love them.",
+    "cat_dogs": "DOGS",
+    "cat_cats": "CATS",
+    "cat_horses": "HORSES",
+    "cat_farm": "FARM ANIMALS",
+    "home_feat1": "Every look reveals a personality.\nEvery look tells a story.",
+    "home_feat2": "Each link reveals a personality.\nEach link tells a story."
   }
 }
