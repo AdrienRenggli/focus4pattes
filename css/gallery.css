@@ -169,9 +169,3 @@
         right: 0.5rem;
     }
 }
-
-@media (max-width: 575px) {
-    .page-title {
-        margin: 3rem auto;
-    }
-}

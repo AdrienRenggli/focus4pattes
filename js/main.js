@@ -1,101 +1,70 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.desktop-nav');
+    const header = document.getElementById('main-header');
     let lastScrollY = window.scrollY;
 
-    // --- 1. CLICK EVENT DELEGATION ---
-    document.addEventListener('click', (e) => {
-        
-        // A. Hamburger Menu Clicked
-        const hamburger = e.target.closest('#hamburger-menu');
-        if (hamburger) {
-            const mainNav = document.querySelector('.main-nav');
-            const icon = hamburger.querySelector('i');
+    // Toggle Menu
+    hamburger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        // Change icon from ☰ to ✕
+        hamburger.innerText = nav.classList.contains('active') ? '✕' : '☰';
+    });
 
-            if (mainNav) {
-                mainNav.classList.toggle('active');
-                
-                // Swap FontAwesome icons (Bars <-> X mark)
-                if (icon) {
-                    if (mainNav.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-xmark');
-                    } else {
-                        icon.classList.remove('fa-xmark');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            }
-            return; // Stop here so we don't trigger other click events
-        }
+    // Close menu when a link is clicked
+    document.querySelectorAll('.desktop-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+            hamburger.innerText = '☰';
+        });
+    });
 
-        // B. Nav Link Clicked (Close the menu automatically)
-        const navLink = e.target.closest('.main-nav a');
-        if (navLink) {
-            const mainNav = document.querySelector('.main-nav');
-            const hamburgerIcon = document.querySelector('#hamburger-menu i');
-            
-            if (mainNav) {
-                mainNav.classList.remove('active');
-            }
-            if (hamburgerIcon) {
-                hamburgerIcon.classList.remove('fa-xmark');
-                hamburgerIcon.classList.add('fa-bars');
-            }
-        }
+    // Hide or show the header based on the scroll status
+    // If scroll down, hide
+    // If scroll up, show
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
 
-        // C. Back To Top Button Clicked
-        const backToTopBtn = e.target.closest('#backToTopBtn');
+      // Don't hide the header if the mobile menu is currently open
+      if (nav.classList.contains('active')) return;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling DOWN - hide header
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling UP - show header
+        header.style.transform = 'translateY(0)';
+      }
+      lastScrollY = currentScrollY;
+    });
+
+    function topFunction() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+        const backToTopBtn = document.getElementById("backToTopBtn");
+
         if (backToTopBtn) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // Scroll to top smoothly when clicked
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            // Only show the button when the user scrolls down
+            window.addEventListener("scroll", () => {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
             });
         }
-
-        // D. Click Outside to Close Menu
-        const mainNav = document.querySelector('.main-nav');
-        // Check if the menu is currently open
-        if (mainNav && mainNav.classList.contains('active')) {
-            // Check if the click happened OUTSIDE the nav menu and OUTSIDE the hamburger button
-            if (!e.target.closest('.main-nav') && !e.target.closest('#hamburger-menu')) {
-                mainNav.classList.remove('active');
-                
-                // Reset the icon back to bars
-                const hamburgerIcon = document.querySelector('#hamburger-menu i');
-                if (hamburgerIcon) {
-                    hamburgerIcon.classList.remove('fa-xmark');
-                    hamburgerIcon.classList.add('fa-bars');
-                }
-            }
-        }
     });
-
-    // --- 2. SCROLL EVENTS ---
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        const header = document.querySelector('.header') || document.getElementById('main-header');
-        const mainNav = document.querySelector('.main-nav');
-        const backToTopBtn = document.getElementById('backToTopBtn');
-
-        // A. Hide/Show Header Logic
-        if (header) {
-            if (mainNav && mainNav.classList.contains('active')) {
-                header.style.transform = 'translateY(0)';
-            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-        }
-        lastScrollY = currentScrollY;
-
-        // B. Back To Top Visibility Logic
-        if (backToTopBtn) {
-            if (currentScrollY > 200) {
-                backToTopBtn.style.display = 'block';
-            } else {
-                backToTopBtn.style.display = 'none';
-            }
-        }
-    });
-});

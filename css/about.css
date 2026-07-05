@@ -118,9 +118,3 @@
         font-size: 0.9rem;
     }
 }
-
-@media (max-width: 575px) {
-    .about-container {
-        margin: 5rem auto;
-    }
-}

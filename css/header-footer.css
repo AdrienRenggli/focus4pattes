@@ -16,29 +16,15 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Serif', 'Libre Baskerville', serif;
-  background-color: var(--white);
-  color: var(--text-dark);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main { 
-    flex: 1; 
-    /* Ensures content doesn't hide behind the fixed header */
-    padding-top: calc(var(--header-height) + 2rem); 
-}
-
-
 /* ----- Header ----- */
 
 .header {
     background-color: var(--bg-beige);
-    min-height: var(--header-height);
-    height: auto; 
-    display: block; 
+    height: var(--header-height);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     width: 100%;
@@ -46,65 +32,23 @@ main {
     transition: var(--transition-smooth);
 }
 
-.header-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; 
-    padding: 1rem 5%;
-    color: var(--text-dark);
-}
-
-/* Base order for Desktop */
-.logo-link {
-    order: 1;
-    flex: 0 0 auto;
-}
-
-.logo-link img {
+.logo img {
     height: 70px;
     width: auto;
 }
 
-.header-titles {
-    order: 2;
-    flex: 1 1 auto; 
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.main-nav {
-    order: 3;
-    flex: 0 0 auto;
+.desktop-nav {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: center;
 }
 
-/* --- TYPOGRAPHY --- */
-.header-titles .main-title {
-    font-size: 1.7rem;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin: 0 0 0.2rem 0;
-}
-
-.header-titles .subtitle {
-    font-size: 0.8rem;
-    margin: 0;
-    font-family: 'Georgia', serif; 
-    font-style: italic;
-    opacity: 0.9;
-}
-
-.main-nav a {
+.desktop-nav a {
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 #lang-switch {
@@ -125,6 +69,21 @@ main {
     cursor: pointer;
 }
 
+/* ----- Main content ----- */
+
+body {
+  font-family: 'Serif', 'Libre Baskerville', serif;
+  background-color: var(--white);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { 
+    flex: 1; 
+    padding-top: var(--header-height);
+}
 
 /* ----- Footer ----- */
 
@@ -157,23 +116,22 @@ main {
     text-decoration: underline;
 }
 
-
 /* ----- For thinner screens ----- */
 
-/* Hamburger appears, but Logo, Title, and Hamburger stay on ONE line */
-@media (max-width: 1010px) { 
+@media (max-width: 780px) {
+    /* --- Header & Nav --- */
     .hamburger {
-        display: block; 
-        order: 3; /* Logo is 1, Titles are 2, Hamburger is 3 */
+        display: block; /* Show hamburger */
         z-index: 1001;
-        color: var(--text-dark); 
-        -webkit-appearance: none; 
+
+        /* iOS styling */
+        color: var(--text-dark); /* Force custom dark brown */
+        -webkit-appearance: none; /* Strip Apple's default button styling */
         appearance: none;
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hide normal nav and turn it into the slide-out menu */
-    .main-nav {
+    .desktop-nav {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -186,46 +144,37 @@ main {
         width: 80%;
         height: 100vh;
         
-        background-color: rgba(184, 169, 154, 0.95);
+        /* --- Transparency Logic --- */
+        background-color: rgba(184, 169, 154, 0.8); 
+        
         backdrop-filter: blur(8px); 
-        -webkit-backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px); /* Safari support */
         
         transition: var(--transition-smooth);
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         z-index: 1000;
     }
 
-    .main-nav.active {
+    .desktop-nav.active {
         right: 0;
     }
-}
 
-/* Stack the footer elements vertically */
-@media (max-width: 700px) {
+    /* --- Footer (Vertical Stack) --- */
     .main-footer {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 3rem;
     }
 
-    .footer-logo { grid-row: 1; }
-    .footer-section:first-child { grid-row: 2; }
-    .footer-section:last-child { grid-row: 3; text-align: center; }
-}
-
-/* Screen is too thin. Titles drop down to a second row. */
-@media (max-width: 575px) {
-    .logo-link {
-        order: 1;
+    /* Reordering the footer: Logo first, then Info, then Autres */
+    .footer-logo {
+        grid-row: 1; 
     }
-    
-    .hamburger {
-        order: 2;
+    .footer-section:first-child {
+        grid-row: 2;
     }
-    
-    .header-titles {
-        order: 3; 
-        flex: 0 0 100%;
-        margin-top: 1rem;
+    .footer-section:last-child {
+        grid-row: 3;
+        text-align: center;
     }
 }
