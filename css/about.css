@@ -86,7 +86,7 @@
 /* ----- Responsive Adjustments ----- */
 @media (max-width: 780px) {
     .about-container {
-        margin: 2rem auto;
+        margin: 1rem auto;
     }
 
     .about-title {
@@ -116,5 +116,11 @@
     #about-material {
         padding: 1.5rem;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .about-container {
+        margin: 5rem auto;
     }
 }
