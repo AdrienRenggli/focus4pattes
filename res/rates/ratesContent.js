@@ -101,7 +101,7 @@ export const ratesContent = {
                     fr: ["raconter une histoire", "immortaliser une relation", "offrir un souvenir durable"],
                     en: ["telling a story", "immortalizing a bond", "offering a lasting memory"]
                 },
-                imgSrc: "res/rates/hero-heritage.jpeg"
+                imgSrc: "res/rates/hero-heritage.webp"
             },
             {
                 id: "exclusive",
