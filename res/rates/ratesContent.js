@@ -40,11 +40,11 @@ export const ratesContent = {
     },
 
     packages: {
-        sectionTitle: { fr: "NOS PRESTATIONS", en: "OUR PACKAGES" },
+        sectionTitle: { fr: "MES PRESTATIONS", en: "MY PACKAGES" },
         idealForText: { fr: "Idéale pour :", en: "Ideal for:" },
         items: [
             {
-                id: "essentielle-lifestyle",
+                id: "essentielle",
                 isHighlighted: false,
                 title: { fr: "L'Essentielle", en: "The Essential" },
                 subtitle: { fr: "Formule Life Style", en: "Lifestyle Package" },
@@ -56,12 +56,12 @@ export const ratesContent = {
                     fr: ["un portrait", "un chat à domicile", "un chien dans son environnement", "un souvenir simple et authentique"],
                     en: ["a portrait", "an indoor cat", "a dog in its environment", "a simple, authentic memory"]
                 },
-                imgSrc: "res/rates/hero-lifestyle.jpeg"
+                imgSrc: "res/rates/hero-essential.jpeg"
             },
             {
-                id: "essentielle-studio",
+                id: "setting",
                 isHighlighted: false,
-                title: { fr: "L'Essentielle", en: "The Essential" },
+                title: { fr: "L'Ecrin", en: "The Setting" },
                 subtitle: { fr: "Studio Mobile", en: "Mobile Studio" },
                 desc: { fr: "Portrait sur fond studio", en: "Portrait on studio background" },
                 price: "CHF 250.-",
@@ -71,7 +71,7 @@ export const ratesContent = {
                     fr: ["portrait artistique", "fond noir ou beige", "rendu intemporel"],
                     en: ["artistic portrait", "black or beige background", "timeless look"]
                 },
-                imgSrc: "res/rates/hero-studio.jpeg"
+                imgSrc: "res/rates/hero-setting.jpeg"
             },
             {
                 id: "serenite",
