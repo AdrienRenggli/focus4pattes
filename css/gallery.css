@@ -1,52 +1,127 @@
-/* ----- Gallery General ----- */
-.gallery-container {
-    padding: 2rem 5%;
-    max-width: 1400px;
+/* --- Page Title --- */
+.page-title {
+    text-align: center;
+    margin-top: 120px; /* Pushes content below the fixed header */
+    color: #4a3f35;
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+/* --- Category Navigation (Subtle) --- */
+.category-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Aligns the X icon with the SVGs */
+    gap: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
+    flex-wrap: wrap;
+    background: transparent; /* Removed heavy background */
+}
+
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #a09385; /* Very subtle text color */
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.cat-item:hover, 
+.cat-item.active {
+    opacity: 1;
+    color: #4a3f35;
+    transform: translateY(-3px);
+}
+
+.cat-item img {
+    width: 35px; /* Scaled down */
+    height: 35px;
+    margin-bottom: 0.5rem;
+    filter: brightness(0) saturate(100%) invert(26%) sepia(13%) saturate(769%) hue-rotate(344deg) brightness(97%) contrast(88%); /* Forces SVG to match #4a3f35 */
+}
+
+/* Clear Filter 'X' */
+.cat-item i.fa-x {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+#filter-all:hover i.fa-x {
+    color: #c96b6b; /* Subtle red on hover to indicate reset */
+}
+
+/* --- Masonry Grid --- */
+.masonry-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+    padding: 0 2rem 4rem 2rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.page-title {
-    font-size: 2.5rem;
-    font-weight: normal;
-    margin-bottom: 2rem;
-    color: var(--text-dark);
-}
+@media (max-width: 900px) { .masonry-grid { column-count: 2; } }
+@media (max-width: 600px) { .masonry-grid { column-count: 1; } }
 
-/* ----- Masonry Grid ----- */
-.gallery-grid {
-    column-count: 3;
-    column-gap: 1.5rem;
-}
-
-.gallery-item {
-    break-inside: avoid; /* Prevents images from splitting across columns */
+.masonry-item {
+    position: relative;
+    break-inside: avoid;
     margin-bottom: 1.5rem;
     cursor: pointer;
+    border-radius: 8px;
     overflow: hidden;
-    background-color: var(--bg-beige); /* Placeholder color while loading */
+    background-color: #eae3db;
 }
 
-.gallery-item img {
+.masonry-item img {
     width: 100%;
-    height: auto;
     display: block;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    height: auto;
+    transition: transform 0.4s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.02);
-    opacity: 0.95;
+.masonry-item:hover img {
+    transform: scale(1.03);
 }
 
-/* ----- Modal Overlay ----- */
+/* Name Overlay on Grid */
+.pet-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(30, 26, 22, 0.8) 0%, transparent 100%);
+    color: #fff;
+    padding: 2rem 1rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.masonry-item:hover .pet-overlay {
+    transform: translateY(0);
+}
+
+/* --- Modal / Carousel --- */
 .modal {
     position: fixed;
-    inset: 0;
-    z-index: 2000;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(30, 26, 22, 0.95);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    z-index: 1000;
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -56,116 +131,56 @@
     pointer-events: none;
 }
 
-.modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-/* ----- Modal Content Box ----- */
-.modal-content {
-    position: relative;
-    background-color: var(--white);
-    width: 100%;
-    max-width: 1000px;
-    max-height: 90vh;
-    display: flex;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    z-index: 2001;
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    cursor: pointer;
-    font-family: sans-serif;
-}
-
-.modal-image-container {
-    flex: 6; /* Takes up roughly 60% of the width */
-    background-color: #000;
+.carousel-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    justify-content: space-between;
+    width: 95%;
+    max-height: 75vh;
 }
 
-.modal-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures the whole image is visible without cropping */
+#carousel-image {
+    max-width: 80%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.modal-info {
-    flex: 4; /* Takes up roughly 40% of the width */
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+.modal-btn {
+    background: none;
+    border: none;
+    color: #f8f5f2;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 1rem;
 }
 
-.modal-info h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-weight: normal;
+.modal-btn:hover {
+    color: #d1bfae;
 }
 
-.modal-description {
-    line-height: 1.6;
-    margin-bottom: auto; /* Pushes metadata to the bottom */
+.modal-btn.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
 }
 
-.modal-metadata {
-    margin-top: 2rem;
-    font-size: 0.85rem;
-    color: var(--text-dark);
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+.carousel-caption {
+    color: #f8f5f2;
+    margin-top: 1.5rem;
+    text-align: center;
+    max-width: 800px;
 }
 
-/* ----- Responsive Adjustments ----- */
-@media (max-width: 1024px) {
-    .gallery-grid { column-count: 2; }
+#carousel-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #d1bfae;
 }
 
-@media (max-width: 780px) {
-    .gallery-grid { column-count: 1; }
-    
-    .modal { padding: 1rem; }
-    
-    .modal-content {
-        flex-direction: column;
-        max-height: 95vh;
-    }
-    
-    .modal-image-container {
-        flex: none;
-        height: 50vh; /* Fixed height on mobile so text is accessible */
-    }
-    
-    .modal-info {
-        padding: 2rem 1.5rem;
-    }
-    
-    .modal-close {
-        /* Add a background to the close button on mobile so it's visible over the image */
-        background: rgba(255,255,255,0.7);
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 0.5rem;
-        right: 0.5rem;
-    }
+#carousel-description {
+    font-size: 1.1rem;
+    line-height: 1.4;
 }

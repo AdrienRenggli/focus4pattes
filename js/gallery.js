@@ -1,114 +1,168 @@
 import { galleryContent } from '../res/gallery/galleryContent.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('gallery-grid');
-    const modal = document.getElementById('photo-modal');
-    const closeBtn = document.getElementById('modal-close');
-    const backdrop = document.querySelector('.modal-backdrop');
+    const galleryContainer = document.getElementById('masonry-gallery');
+    const modal = document.getElementById('carousel-modal');
+    const carouselImg = document.getElementById('carousel-image');
+    const captionTitle = document.getElementById('carousel-title');
+    const captionDesc = document.getElementById('carousel-description');
+    
+    let currentImages = [];
+    let currentIndex = 0;
 
-    const modalImg = document.getElementById('modal-image');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalFocal = document.getElementById('modal-meta-focal');
-    const modalAperture = document.getElementById('modal-meta-aperture');
-    const modalShutter = document.getElementById('modal-meta-shutter');
-    const modalISO = document.getElementById('modal-meta-iso');
+    // Supported formats in the order they will be tested
+    const validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
-    // Helper to get current language from storage
-    const getLang = () => localStorage.getItem('lang') || 'fr';
+    // 1. Parse category from URL, default to 'all'
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentCategory = urlParams.get('category') || 'all';
 
-    // ---  DOM Injection ---
-    function createGalleryItem(data) {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
+    // Highlight the active category in the navigation
+    document.querySelectorAll('.cat-item').forEach(link => {
+        const linkCategory = new URL(link.href).searchParams.get('category');
+        if (linkCategory === currentCategory) {
+            link.classList.add('active');
+        }
+    });
 
-        // Store the full bilingual object directly on the element for later access
-        item._bilingualData = data;
+    // 2. Compile data from galleryContent.js
+    let petsToRender = [];
 
-        const src = `res/gallery/${data.path}`;
-        const img = document.createElement('img');
-        img.src = src;
-        img.loading = 'lazy';
-        img.alt = data.title;
-
-        item.appendChild(img);
-        
-        // Pass the element itself to openModal
-        item.addEventListener('click', () => openModal(item));
-        
-        grid.appendChild(item);
+    if (currentCategory === 'all') {
+        for (const categoryName in galleryContent) {
+            const petsWithCategory = galleryContent[categoryName].map(pet => ({
+                ...pet,
+                folderCategory: categoryName 
+            }));
+            petsToRender = petsToRender.concat(petsWithCategory);
+        }
+    } else {
+        if (galleryContent[currentCategory]) {
+            petsToRender = galleryContent[currentCategory].map(pet => ({
+                ...pet,
+                folderCategory: currentCategory
+            }));
+        } else {
+            galleryContainer.innerHTML = `<p style="text-align:center;">404: working on it.</p>`;
+            return;
+        }
     }
 
-    // --- Modal & EXIF Logic ---
-    async function openModal(item) {
-        const data = item._bilingualData;
-        const lang = getLang();
-        const imgElement = item.querySelector('img');
+    renderGallery(petsToRender);
 
-        modalImg.src = `res/gallery/${data.path}`;
-        modalTitle.innerText = data.title;
-        modalDesc.innerText = data.description[lang] || "";
-        
-        // Tag the modal with the current path so the language listener can find it
-        modal.dataset.activePath = data.path;
-        
-        modalFocal.innerText = "";
-        modalShutter.innerText = "";
-        
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-
-        try {
-            const exifData = await exifr.parse(imgElement);
-            
-            if (exifData) {
-                modalFocal.innerText = exifData.FocalLength ? `f ${exifData.FocalLength}mm` : "";
-
-                modalAperture.innerText = exifData.FNumber ? `ƒ/${exifData.FNumber}` : "";
-
-                
-                let shutter = "";
-                if (exifData.ExposureTime) {
-                    const fraction = Math.round(1 / exifData.ExposureTime);
-                    modalShutter.innerText = `shutter speed 1/${fraction}`;
+    // --- HELPER: Find the first working extension for a given image index ---
+    async function getValidImageUrl(basePath, index) {
+        for (const ext of validExtensions) {
+            const testUrl = `${basePath}${index}.${ext}`;
+            try {
+                const response = await fetch(testUrl, { method: 'HEAD' });
+                if (response.ok) {
+                    return testUrl; // Found a working format!
                 }
+            } catch (error) {
+                // Network error, ignore and continue loop
+            }
+        }
+        return null; // Hit 404s on all extensions
+    }
 
-                modalISO.innerText = exifData.ISO ? `ISO ${exifData.ISO}` : "";
+    // 3. Render Masonry Grid
+    function renderGallery(pets) {
+        galleryContainer.innerHTML = ''; 
+        
+        pets.forEach(async (pet) => {
+            const basePath = `res/gallery/${pet.folderCategory}/${pet.id}/`;
+            
+            // Create the wrapper immediately to maintain DOM order
+            const item = document.createElement('div');
+            item.className = 'masonry-item';
+            
+            // Wait to find the correct extension for the cover photo (1.jpg, 1.png, etc.)
+            const coverUrl = await getValidImageUrl(basePath, 1);
+            
+            // Only render the item if a cover photo was actually found
+            if (coverUrl) {
+                // Image
+                const img = document.createElement('img');
+                img.src = coverUrl; 
+                img.alt = pet.name || 'Photographie d\'animal';
+                img.loading = 'lazy';
+                
+                // Name Overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'pet-overlay';
+                overlay.textContent = pet.name;
+                
+                item.appendChild(img);
+                item.appendChild(overlay);
+                
+                item.addEventListener('click', () => openCarousel(basePath, pet, coverUrl));
+                galleryContainer.appendChild(item);
+            }
+        });
+    }
+
+    // 4. Carousel Logic
+    async function openCarousel(basePath, pet, coverUrl) {
+        // Start the array with the cover URL we already found
+        currentImages = [coverUrl]; 
+        currentIndex = 0;
+        updateCarouselUI();
+        
+        // Setup text data
+        const currentLang = localStorage.getItem('lang') || 'fr';
+        captionTitle.textContent = pet.name;
+        captionDesc.textContent = pet.description ? pet.description[currentLang] : '';
+
+        modal.classList.remove('hidden');
+
+        // Check for sequential images across multiple formats
+        let indexToTest = 2;
+        let keepChecking = true;
+
+        while (keepChecking) {
+            // Use helper function to check 2.jpg, 2.png, etc.
+            const nextUrl = await getValidImageUrl(basePath, indexToTest);
+            
+            if (nextUrl) {
+                currentImages.push(nextUrl);
+                indexToTest++;
+                
+                // If more than 1 image is found, show the arrows
+                const navButtons = document.querySelectorAll('.modal-btn.prev, .modal-btn.next');
+                navButtons.forEach(btn => btn.style.display = 'block');
             } else {
-                modalFocal.innerText = "";
+                keepChecking = false; // No formats worked for this index, stop checking
             }
-        } catch (error) {
-            console.error("Failed to extract EXIF:", error);
-            modalFocal.innerText = "Error while loading metadata";
+        }
+        
+        // Hide next/prev buttons if there is only 1 image total
+        if (currentImages.length <= 1) {
+            const navButtons = document.querySelectorAll('.modal-btn.prev, .modal-btn.next');
+            navButtons.forEach(btn => btn.style.display = 'none');
         }
     }
 
-    function closeModal() {
+    // 5. Navigation Logic
+    function updateCarouselUI() {
+        carouselImg.src = currentImages[currentIndex];
+    }
+
+    document.getElementById('carousel-prev').addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentImages.length - 1;
+        updateCarouselUI();
+    });
+
+    document.getElementById('carousel-next').addEventListener('click', () => {
+        currentIndex = (currentIndex < currentImages.length - 1) ? currentIndex + 1 : 0;
+        updateCarouselUI();
+    });
+
+    document.getElementById('modal-close').addEventListener('click', () => {
         modal.classList.add('hidden');
-        delete modal.dataset.activePath;
-        document.body.style.overflow = '';
-        setTimeout(() => modalImg.src = '', 300);
-    }
-
-    // React to the language change event
-    window.addEventListener('languageChanged', () => {
-        const lang = getLang();
-
-        // Update the modal content if it is currently open
-        if (!modal.classList.contains('hidden') && modal.dataset.activePath) {
-            const activeItemData = galleryContent.find(i => i.path === modal.dataset.activePath);
-            if (activeItemData) {
-                modalDesc.innerText = activeItemData.description[lang] || "";
-            }
-        }
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
     });
-
-    // --- Load Initial Images ---
-    galleryContent.forEach(item => createGalleryItem(item));
 });

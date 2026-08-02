@@ -14,38 +14,48 @@
 
     <body>
         <header id="main-header" class="header"></header>
+    
+        <h1 data-i18n="nav-gallery" class="page-title">Galerie photos</h1>
 
-        <main>
-            <div class="gallery-container">
-                <h1 data-i18n="nav-gallery" class="page-title">Galerie photos</h1>
-                
-                <div id="gallery-grid" class="gallery-grid">
-                    </div>
-            </div>
+        <!-- Category Filters -->
+        <section class="category-grid">
+            <a href="gallery.html?category=dogs" class="cat-item">
+                <img src="res/home/dog.svg" alt="Chiens">
+                <span data-i18n="cat_dogs">CHIENS</span>
+            </a>
+            <a href="gallery.html?category=cats" class="cat-item">
+                <img src="res/home/cat.svg" alt="Chats">
+                <span data-i18n="cat_cats">CHATS</span>
+            </a>
+            <a href="gallery.html?category=horses" class="cat-item">
+                <img src="res/home/horse.svg" alt="Chevaux">
+                <span data-i18n="cat_horses">CHEVAUX</span>
+            </a>
+            <a href="gallery.html?category=farm" class="cat-item">
+                <img src="res/home/farm.svg" alt="Animaux de ferme">
+                <span data-i18n="cat_farm">ANIMAUX DE FERME</span>
+            </a>
+            <a href="gallery.html?category=all" class="cat-item" id="filter-all" title="Effacer le filtre">
+                <i class="fa-solid fa-x"></i>
+            </a>
+        </section> 
 
-            <div id="photo-modal" class="modal hidden">
-                <div class="modal-backdrop"></div>
-                <div class="modal-content">
-                    <button id="modal-close" class="modal-close">X</button>
-                    
-                    <div class="modal-image-container">
-                        <img id="modal-image" src="" alt="Selected photo">
-                    </div>
-                    
-                    <div class="modal-info">
-                        <h2 id="modal-title">Titre de la photo</h2>
-                        <p id="modal-desc" class="modal-description">Description de la photo...</p>
-                        
-                        <div class="modal-metadata">
-                            <span id="modal-meta-focal"></span>
-                            <span id="modal-meta-aperture"></span>
-                            <span id="modal-meta-shutter"></span>
-                            <span id="modal-meta-iso"></span>
-                        </div>
-                    </div>
-                </div>
+        <!-- Masonry Gallery Container -->
+        <main id="masonry-gallery" class="masonry-grid"></main>
+
+        <!-- Fullscreen Carousel Modal -->
+        <div id="carousel-modal" class="modal hidden">
+            <button id="modal-close" class="modal-btn close">&times;</button>
+            <div class="carousel-container">
+                <button id="carousel-prev" class="modal-btn prev">&#10094;</button>
+                <img id="carousel-image" src="" alt="Photographie d'animal">
+                <button id="carousel-next" class="modal-btn next">&#10095;</button>
             </div>
-        </main>
+            <div class="carousel-caption">
+                <h3 id="carousel-title"></h3>
+                <p id="carousel-description"></p>
+            </div>
+        </div>
 
         <button id="backToTopBtn" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
 
@@ -58,5 +68,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
 
-        <script type="module" src="js/gallery.js"></script> </body>
+        <script src="data/galleryContent.js"></script>
+        <script type="module" src="js/gallery.js"></script> 
+    </body>
 </html>
