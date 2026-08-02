@@ -2,160 +2,183 @@ import { ratesContent } from '../res/rates/ratesContent.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('rates-content');
-
     const getLang = () => localStorage.getItem('lang') || 'fr';
 
     function renderContent() {
         const lang = getLang();
-        container.innerHTML = '';
 
-        ratesContent.forEach(block => {
-            let el;
-            
-            // --- HEADER ---
-            if (block.type === 'header') {
-                el = document.createElement('header');
-                el.className = 'pricing-header';
-                
-                const h2 = document.createElement('h2');
-                h2.innerText = block.title[lang];
-                el.appendChild(h2);
-            } 
-            
-            // --- PACKAGES ---
-            else if (block.type === 'packages') {
-                el = document.createElement('section');
-                el.className = 'packages';
-                
-                block.items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = `package-card ${item.highlight ? 'highlight' : ''}`;
-                    
-                    const h3 = document.createElement('h3');
-                    h3.innerHTML = item.title[lang] + (item.subtitle ? `<br><span>${item.subtitle[lang]}</span>` : '');
-                    card.appendChild(h3);
-                    
-                    if (item.desc) {
-                        const desc = document.createElement('p');
-                        desc.className = 'package-desc';
-                        desc.innerText = item.desc[lang];
-                        card.appendChild(desc);
-                    }
-                    
-                    const price = document.createElement('p');
-                    price.className = 'price';
-                    price.innerText = item.price[lang];
-                    card.appendChild(price);
-                    
-                    const ul = document.createElement('ul');
-                    ul.className = 'package-features';
-                    item.features.forEach(feat => {
-                        const li = document.createElement('li');
-                        li.innerText = feat[lang];
-                        ul.appendChild(li);
-                    });
-                    card.appendChild(ul);
-                    
-                    el.appendChild(card);
-                });
-            }
-            
-            // --- DETAILS ---
-            else if (block.type === 'details') {
-                el = document.createElement('section');
-                el.className = 'service-details';
-                
-                const h3 = document.createElement('h3');
-                h3.innerText = block.title[lang];
-                el.appendChild(h3);
-                
-                const p = document.createElement('p');
-                p.className = 'subtitle-small';
-                p.innerText = block.subtitle[lang];
-                el.appendChild(p);
-                
-                const grid = document.createElement('div');
-                grid.className = 'details-grid';
-                
-                block.items.forEach(item => {
-                    const detailItem = document.createElement('div');
-                    detailItem.className = 'detail-item';
-                    
-                    const h4 = document.createElement('h4');
-                    h4.innerText = item.label[lang];
-                    detailItem.appendChild(h4);
-                    
-                    const desc = document.createElement('p');
-                    desc.innerText = item.desc[lang];
-                    detailItem.appendChild(desc);
-                    
-                    grid.appendChild(detailItem);
-                });
-                
-                el.appendChild(grid);
-            }
-            
-            // --- OPTIONS ---
-            else if (block.type === 'options') {
-                el = document.createElement('section');
-                el.className = 'options-section';
-                
-                const h3 = document.createElement('h3');
-                h3.innerText = block.title[lang];
-                el.appendChild(h3);
-                
-                const optionsContainer = document.createElement('div');
-                optionsContainer.className = 'options-container';
-                
-                const table = document.createElement('table');
-                table.className = 'options-table';
-                const tbody = document.createElement('tbody');
-                
-                block.items.forEach(item => {
-                    const tr = document.createElement('tr');
-                    
-                    const tdLabel = document.createElement('td');
-                    tdLabel.innerText = item.label[lang];
-                    tr.appendChild(tdLabel);
-                    
-                    const tdPrice = document.createElement('td');
-                    tdPrice.className = 'align-right';
-                    tdPrice.innerText = item.price[lang];
-                    tr.appendChild(tdPrice);
-                    
-                    tbody.appendChild(tr);
-                });
-                
-                table.appendChild(tbody);
-                optionsContainer.appendChild(table);
-                el.appendChild(optionsContainer);
-                
-                const note = document.createElement('p');
-                note.className = 'custom-options-note';
-                note.innerText = block.note[lang];
-                el.appendChild(note);
-            }
-            
-            // --- FOOTER ---
-            else if (block.type === 'footer') {
-                el = document.createElement('footer');
-                el.className = 'pricing-cta';
-                
-                const btn = document.createElement('a');
-                btn.href = '#'; 
-                btn.className = 'cta-button reveal-email-link';
-                btn.innerText = block.buttonText[lang];
-                el.appendChild(btn);
-                
-                const note = document.createElement('p');
-                note.className = 'atelier-note';
-                note.innerText = block.note[lang];
-                el.appendChild(note);
-            }
+        container.innerHTML = ''; 
 
-            if (el) container.appendChild(el);
+        // 1. Header & Intro
+        const headerSection = document.createElement('section');
+        headerSection.className = 'rates-header-intro';
+        headerSection.innerHTML = `
+            <header class="rates-header">
+                <h1>${ratesContent.header.title[lang]}</h1>
+                <p class="subtitle">${ratesContent.header.subtitle[lang]}</p>
+            </header>
+            <div class="rates-intro">
+                <p>${ratesContent.header.intro[lang]}</p>
+            </div>
+        `;
+        container.appendChild(headerSection);
+
+        // 2. Included Section
+        const includedSection = document.createElement('section');
+        includedSection.className = 'rates-included';
+        
+        let includedHTML = `<h2 class="section-divider">${ratesContent.included.sectionTitle[lang]}</h2><div class="grid-5-col">`;
+        
+        ratesContent.included.items.forEach(item => {
+            includedHTML += `
+                <div class="included-item">
+                    <i class="${item.icon} fa-2x"></i>
+                    <h3>${item.title[lang]}</h3>
+                    <p>${item.desc[lang]}</p>
+                </div>
+            `;
         });
-    }
+        includedHTML += `</div>`;
+        includedSection.innerHTML = includedHTML;
+        container.appendChild(includedSection);
+
+        // 3. Packages Section
+        const packagesSection = document.createElement('section');
+        packagesSection.className = 'rates-packages';
+        
+        let packagesHTML = `<h2 class="section-divider">${ratesContent.packages.sectionTitle[lang]}</h2><div class="grid-5-col packages-grid">`;
+        
+        ratesContent.packages.items.forEach(pkg => {
+            const highlightClass = pkg.isHighlighted ? 'highlighted' : '';
+            const idealList = pkg.idealFor[lang].map(li => `<li>${li}</li>`).join('');
+            
+            packagesHTML += `
+                <article class="package-card ${highlightClass}">
+                    <h3>${pkg.title[lang]}</h3>
+                    <span class="pkg-subtitle">${pkg.subtitle[lang]}</span>
+                    ${pkg.desc[lang] ? `<p class="pkg-desc">${pkg.desc[lang]}</p>` : ''}
+                    
+                    <div class="pkg-price">${pkg.price}</div>
+                    
+                    <ul class="pkg-features">
+                        <li>${pkg.duration[lang]}</li>
+                        <li>${pkg.photos[lang].replace('\n', '<br>')}</li>
+                    </ul>
+                    
+                    <div class="pkg-ideal">
+                        <strong>${ratesContent.packages.idealForText[lang]}</strong>
+                        <ul>${idealList}</ul>
+                    </div>
+                    
+                    <img src="${pkg.imgSrc}" alt="${pkg.title[lang]}" loading="lazy">
+                </article>
+            `;
+        });
+        packagesHTML += `</div>`;
+        packagesSection.innerHTML = packagesHTML;
+        container.appendChild(packagesSection);
+
+        // 4. Options & Tirages Section
+        const optionsSection = document.createElement('section');
+        optionsSection.className = 'rates-options';
+        
+        const opt = ratesContent.options;
+        
+        let optionsHTML = `
+            <h2 class="section-divider">${opt.sectionTitle[lang]}</h2>
+            <div class="options-grid">
+                <!-- Digital Column -->
+                <div class="options-box">
+                    <h3>${opt.digital.title[lang]}</h3>
+                    <ul class="option-list">
+                        ${opt.digital.items.map(item => `
+                            <li>
+                                <div class="option-info">
+                                    <i class="${item.icon}"></i>
+                                    <span>${item.name[lang]}</span>
+                                    ${item.badge ? `<span class="badge">${item.badge[lang]}</span>` : ''}
+                                </div>
+                                <span class="option-price">${item.price}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                <!-- Prints Column -->
+                <div class="options-box">
+                    <h3>${opt.prints.title[lang]}</h3>
+                    <ul class="option-list">
+                        ${opt.prints.items.map(item => `
+                            <li>
+                                <div class="option-info">
+                                    <i class="${item.icon}"></i>
+                                    <span>${item.name[lang]}</span>
+                                </div>
+                                <span class="option-price">${item.price}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Travel Full Width Banner -->
+            <div class="travel-banner">
+                <div class="travel-title">
+                    <i class="fa-solid fa-car"></i>
+                    <strong>${opt.travel.title[lang]}</strong>
+                </div>
+                <div class="travel-info">
+                    <span>${opt.travel.freeRadius[lang]}</span>
+                    <span class="highlight-pill">${opt.travel.freeLabel[lang]}</span>
+                </div>
+                <div class="travel-rate">
+                    ${opt.travel.rateLabel[lang]}
+                </div>
+            </div>
+        `;
+        optionsSection.innerHTML = optionsHTML;
+        container.appendChild(optionsSection);
+
+        // 5. Why Choose Us Section
+        const whyUsSection = document.createElement('section');
+        whyUsSection.className = 'rates-why-us';
+        
+        let whyUsHTML = `
+            <h2 class="section-divider">${ratesContent.whyUs.sectionTitle[lang]}</h2>
+            <div class="grid-4-col">
+                ${ratesContent.whyUs.items.map(item => `
+                    <div class="why-item">
+                        <i class="${item.icon} fa-2x"></i>
+                        <h3>${item.title[lang]}</h3>
+                        <p>${item.desc[lang]}</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        whyUsSection.innerHTML = whyUsHTML;
+        container.appendChild(whyUsSection);
+
+        // 6. Contact Banner
+        // 6. Contact Banner
+    const calloutSection = document.createElement('section');
+    calloutSection.className = 'rates-callout';
+    calloutSection.innerHTML = `
+        <div class="callout-content">
+            <div class="callout-icon">
+                <i class="fa-solid fa-paw fa-3x"></i>
+            </div>
+            <div class="callout-text">
+                <h2>${ratesContent.callout.title[lang]}</h2>
+                <p>${ratesContent.callout.text[lang]}</p>
+                <a class="callout-btn reveal-email-link" href="mailto:${ratesContent.callout.email}">
+                    <i class="fa-regular fa-envelope"></i> ${ratesContent.callout.button[lang]}
+                </a>
+            </div>
+        </div>
+    `;
+    container.appendChild(calloutSection);
+            
+        }
 
     // Initial render
     renderContent();
