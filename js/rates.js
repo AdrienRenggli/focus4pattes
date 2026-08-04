@@ -68,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="pkg-ideal">
                         <strong>${ratesContent.packages.idealForText[lang]}</strong>
                         <ul>${idealList}</ul>
-                    </div>
-                    
-                    <img src="${pkg.imgSrc}" alt="${pkg.title[lang]}" loading="lazy">
+                    </div>                 
                 </article>
             `;
         });
