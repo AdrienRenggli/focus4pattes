@@ -157,26 +157,27 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(whyUsSection);
 
         // 6. Contact Banner
-        // 6. Contact Banner
-    const calloutSection = document.createElement('section');
-    calloutSection.className = 'rates-callout';
-    calloutSection.innerHTML = `
-        <div class="callout-content">
-            <div class="callout-icon">
-                <i class="fa-solid fa-paw fa-3x"></i>
+        const calloutSection = document.createElement('section');
+        calloutSection.className = 'rates-callout';
+        calloutSection.innerHTML = `
+            <div class="callout-content">
+                <div class="callout-icon">
+                    <i class="fa-solid fa-paw fa-3x"></i>
+                </div>
+                <div class="callout-text">
+                    <h2>${ratesContent.callout.title[lang]}</h2>
+                    <p>${ratesContent.callout.text[lang]}</p>
+                    <a class="callout-btn reveal-email-link" href="${ratesContent.callout.email}">
+                        <i class="fa-regular fa-envelope"></i> ${ratesContent.callout.mail[lang]}
+                    </a>
+                    <a class="callout-btn" href="${ratesContent.callout.pdf_link}" target="_blank">
+                        <i class="fa-regular fa-file-pdf"></i> ${ratesContent.callout.pdf[lang]}
+                    </a>
+                </div>
             </div>
-            <div class="callout-text">
-                <h2>${ratesContent.callout.title[lang]}</h2>
-                <p>${ratesContent.callout.text[lang]}</p>
-                <a class="callout-btn reveal-email-link" href="mailto:${ratesContent.callout.email}">
-                    <i class="fa-regular fa-envelope"></i> ${ratesContent.callout.button[lang]}
-                </a>
-            </div>
-        </div>
-    `;
-    container.appendChild(calloutSection);
-            
-        }
+        `;
+        container.appendChild(calloutSection);
+    }
 
     // Initial render
     renderContent();

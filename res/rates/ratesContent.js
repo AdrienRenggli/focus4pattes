@@ -221,7 +221,10 @@ export const ratesContent = {
             fr: "Vous recherchez une prestation particulière ou un projet sur mesure ? Parlons-en.<br>Chaque histoire mérite une séance qui lui ressemble.", 
             en: "Looking for a custom package or a tailored project? Let's talk.<br>Every story deserves a session that truly reflects it." 
         },
-        button: { fr: "Me contacter", en: "Contact me" },
-        href: "#"
+        mail: { fr: "Me contacter", en: "Contact me" },
+        href: "#",
+        pdf: { fr: "Télécharger le formulaire", en: "Download the form (french)" },
+        pdf_link: "res/docs/Bon_Reservation_Focus4Pattes.pdf"
+
     }
 };
