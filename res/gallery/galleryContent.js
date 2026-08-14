@@ -60,5 +60,8 @@ export const galleryContent = {
                 "en": "At the farm"
             }
         },
+    ],
+    "horses": [
+        
     ]
 }
