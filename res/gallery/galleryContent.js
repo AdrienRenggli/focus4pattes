@@ -12,8 +12,8 @@ export const galleryContent = {
             "id": "Brembo",
             "name": "Brembo",
             "description": {
-                "fr": "Jouant dans l'eau",
-                "en": "Playing in water"
+                "fr": "Le modèle",
+                "en": "the model"
             }
         },
     ],
