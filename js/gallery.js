@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
 
     // Supported formats in the order they will be tested
-    const validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+    const validExtensions = ['webp' /*, 'jpg', 'jpeg', 'png'*/]; // Enable different kind of format
 
-    // 1. Parse category from URL, default to 'all'
+    // Parse category from URL, default to 'all'
     const urlParams = new URLSearchParams(window.location.search);
     const currentCategory = urlParams.get('category') || 'all';
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Compile data from galleryContent.js
+    // Compile data from galleryContent.js
     let petsToRender = [];
 
     if (currentCategory === 'all') {
@@ -66,12 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return null; // Hit 404s on all extensions
     }
 
-    // 3. Render Masonry Grid
+    // Render Masonry Grid
     function renderGallery(pets) {
         galleryContainer.innerHTML = ''; 
         
         pets.forEach(async (pet) => {
-            const basePath = `res/gallery/${pet.folderCategory}/${pet.id}/`;
+            // Get images from github repo
+            const basePath = `https://raw.githubusercontent.com/AdrienRenggli/focus4pattes/refs/heads/main/res/gallery/${pet.folderCategory}/${pet.id}/`;
             
             // Create the wrapper immediately to maintain DOM order
             const item = document.createElement('div');
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Carousel Logic
+    // Carousel Logic
     async function openCarousel(basePath, pet, coverUrl) {
         // Start the array with the cover URL we already found
         currentImages = [coverUrl]; 
@@ -143,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5. Navigation Logic
+    // Navigation Logic
     function updateCarouselUI() {
         carouselImg.src = currentImages[currentIndex];
     }
