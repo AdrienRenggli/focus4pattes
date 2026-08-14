@@ -8,6 +8,14 @@ export const galleryContent = {
                 "en": "Catching my ball"
             }
         },
+        {
+            "id": "Brembo",
+            "name": "Brembo",
+            "description": {
+                "fr": "Jouant dans l'eau",
+                "en": "Playing in water"
+            }
+        },
     ],
     "cats": [
         {
