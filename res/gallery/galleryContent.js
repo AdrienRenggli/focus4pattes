@@ -70,6 +70,13 @@ export const galleryContent = {
         },
     ],
     "horses": [
-        
+        {
+            "id": "Europa",
+            "name": "Europa",
+            "description": {
+                "fr": "au pré",
+                "en": "in the field"
+            }
+        },
     ]
 }
