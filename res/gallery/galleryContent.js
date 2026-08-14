@@ -78,5 +78,13 @@ export const galleryContent = {
                 "en": "in the field"
             }
         },
+        {
+            "id": "Hortensia",
+            "name": "Hortensia",
+            "description": {
+                "fr": "",
+                "en": ""
+            }
+        },
     ]
 }
