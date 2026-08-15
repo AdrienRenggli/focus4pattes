@@ -171,7 +171,7 @@ export const ratesContent = {
         },
         travel: {
             title: { fr: "DÉPLACEMENT", en: "TRAVEL" },
-            freeRadius: { fr: "15 km autour de votre domicile", en: "15 km around your home" },
+            freeRadius: { fr: "30 km autour de votre domicile", en: "30 km around your home" },
             freeLabel: { fr: "Offert", en: "Free" },
             rateLabel: { fr: "Puis CHF 0.80/km", en: "Then CHF 0.80/km" }
         }
