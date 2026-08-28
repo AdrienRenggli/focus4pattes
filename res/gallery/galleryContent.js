@@ -4,16 +4,24 @@ export const galleryContent = {
             "id": "Upsy",
             "name": "Upsy",
             "description": {
-                "fr": "Attrapant ma balle",
-                "en": "Catching my ball"
+                "fr": "Teckel standard - 3 ans",
+                "en": "Teckel standard - 3 years old"
             }
         },
         {
             "id": "Brembo",
             "name": "Brembo",
             "description": {
-                "fr": "Le modèle",
-                "en": "the model"
+                "fr": "Berger américain miniature",
+                "en": "Miniature American Shepherd"
+            }
+        },
+        {
+            "id": "Patrocle",
+            "name": "Patrocle",
+            "description": {
+                "fr": "Berger blanc suisse - 5 ans",
+                "en": "Swiss White Shepherd- 5 years old"
             }
         },
     ],
@@ -22,40 +30,40 @@ export const galleryContent = {
             "id": "Lili",
             "name": "Lili",
             "description": {
-                "fr": "On nagerait dans ses yeux",
-                "en": "We would swim in her eyes"
+                "fr": "croisement Maine Coon-Ragdoll - 5 ans",
+                "en": "Maine Coon-Ragdoll cross - 5 years old"
             }
         },
         {
             "id": "Nono",
             "name": "Nono",
             "description": {
-                "fr": "Un regard perçant",
-                "en": "A piercing gaze"
+                "fr": "American curl - 9 ans",
+                "en": "American curl - 9 years old"
             }
         },
         {
             "id": "Pompon",
             "name": "Pompon",
             "description": {
-                "fr": "Toujours à l'affût",
-                "en": "Always looking out"
+                "fr": "11 ans",
+                "en": "11 years old"
             }
         },
         {
             "id": "Yüna",
             "name": "Yüna",
             "description": {
-                "fr": "",
-                "en": ""
+                "fr": "Main coon - 2 ans",
+                "en": "Main coon - 2 years old"
             }
         },
         {
             "id": "Choupette",
             "name": "Choupette",
             "description": {
-                "fr": "",
-                "en": ""
+                "fr": "6 ans",
+                "en": "6 years old"
             }
         }
     ],
@@ -64,8 +72,8 @@ export const galleryContent = {
             "id": "Bruno et son cheptel",
             "name": "Les vaches de Bruno",
             "description": {
-                "fr": "À la ferme",
-                "en": "At the farm"
+                "fr": "",
+                "en": ""
             }
         },
     ],
