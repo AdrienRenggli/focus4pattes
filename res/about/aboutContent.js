@@ -116,7 +116,7 @@ export const aboutContent = [
         },
         items: [
             "Canon EOS R6",
-            { fr: "Objectifs: 24-105mm, 70-300mm, 100-500mm & 100mm Macro.", en: "Lenses: 24-105mm, 70-300mm & 100mm Macro." }
+            { fr: "Objectifs: 24-105mm, 70-300mm, 100-500mm & 100mm Macro.", en: "Lenses: 24-105mm, 70-300mm, 100-500 & 100mm Macro." }
         ]
     }
 ];
