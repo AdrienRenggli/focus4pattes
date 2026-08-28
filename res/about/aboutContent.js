@@ -18,14 +18,14 @@ export const aboutContent = [
         bold: true,
         content: {
             fr: "10 ans de passion, un regard polyvalent.",
-            en: "10 years of passion, a versatile gaze."
+            en: "10 years of passion, a versatile approach."
         }
     },
     {
         type: "paragraph",
         content: {
             fr: "Mon aventure photographique a commencé il y a une décennie. Membre d'un club photo depuis 3 ans, j'ai exploré tous les styles pour forger ma technique :",
-            en: "My photographic adventure began a decade ago. A member of a photo club for 3 years, I have explored all styles to forge my technique:"
+            en: "My photographic adventure began a decade ago. As a member of a photography club for 3 years, I have explored all styles of photography to enhance my technique:"
         }
     },
     {
@@ -41,7 +41,7 @@ export const aboutContent = [
             },
             {
                 label: { fr: "Le Paysage :", en: "Landscape:" },
-                desc: { fr: "Pour l'art de sublimer votre compagnon dans son environnement.", en: "For the art of enhancing your companion in their environment." }
+                desc: { fr: "Pour l'art de sublimer votre compagnon dans son environnement.", en: "For the art of showcasing your companion in their environment." }
             }
         ]
     },
@@ -50,28 +50,28 @@ export const aboutContent = [
         bold: true,
         content: {
             fr: "Ma mission : Immortaliser votre compagnon de route.",
-            en: "My mission: To immortalize your traveling companion."
+            en: "My mission: To immortalize your travelling companion."
         }
     },
     {
         type: "paragraph",
         content: {
             fr: "Après avoir exploré ces horizons, j'ai choisi de mettre mon expertise à votre service et valoriser vos animaux de compagnie.",
-            en: "After exploring these horizons, I chose to put my expertise at your service and showcase your pets."
+            en: "After exploring these horizons, I have chosen to offer you my services to showcase your pets."
         }
     },
     {
         type: "paragraph",
         content: {
             fr: "En complément de mon activité professionnelle, je consacre mon temps libre à transformer vos instants de complicité en souvenirs mémorables.",
-            en: "Alongside my professional career, I dedicate my free time to transforming your moments of connection into lasting memories."
+            en: "Alongside my professional career, I dedicate my free time to transforming your special moments into lasting memories."
         }
     },
     {
         type: "paragraph",
         content: {
             fr: "Basée à Coppet, je me déplace avec plaisir dans la région.",
-            en: "Based in Coppet, I travel to your home or a favorite outdoor spot within the area."
+            en: "Based in Coppet, I travel to your home or a favourite outdoor spot within the area."
         }
     },
     {
