@@ -28,7 +28,7 @@ export const legalsContent = [
         type: "paragraph",
         content: {
             fr: "Les présentes Conditions Générales de Vente définissent les droits et obligations entre Focus 4 Pattes et le client dans le cadre d'une prestation de photographie animalière.",
-            en: "These Terms and Conditions of Sale define the rights and obligations between Focus 4 Pattes and the client in relation to pet photography services."
+            en: "These Terms and Conditions of Sale define the rights and obligations between Focus 4 Pattes and the client, in relation to pet photography services."
         }
     },
     {
@@ -70,7 +70,7 @@ export const legalsContent = [
         type: "paragraph",
         content: {
             fr: "En cas de météo défavorable, de maladie de l'animal ou de la photographe, une nouvelle date est proposée. En cas d'annulation par le client moins de 7 jours avant la séance, l'acompte reste acquis sauf cas de force majeure.",
-            en: "In the event of unsuitable weather, illness of the animal, or illness of the photographer, a new session date will be offered. If the client cancels less than 7 days before the session, the deposit is non-refundable except in cases of force majeure."
+            en: "In the event of unsuitable weather, illness of the animal, or illness of the photographer, a new session date will be offered. If the client cancels less than 7 days before the session, the deposit is non-refundable except in cases of exceptional circumstances."
         }
     },
     {
