@@ -82,8 +82,8 @@ export const galleryContent = {
             "id": "Europa",
             "name": "Europa",
             "description": {
-                "fr": "au pré",
-                "en": "in the field"
+                "fr": "",
+                "en": ""
             }
         },
         {
@@ -94,5 +94,12 @@ export const galleryContent = {
                 "en": ""
             }
         },
+        {
+            "id": "Lieske",
+            "name": "Lieske",
+            "description": {
+                "fr": "Frison, 8ans",
+                "en": "Friesian, 8 years old"
+            }
     ]
 }
